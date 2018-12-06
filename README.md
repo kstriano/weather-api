@@ -1,5 +1,7 @@
 To run the application, do the following:
 
+- Install Angular CLI: From a command line, run `npm install -g @angular/cli`
+
 - Run "npm install" in the "WeatherApp" directory.
 
 - From a command line, run "dotnet run" from the "WeatherApi" 
