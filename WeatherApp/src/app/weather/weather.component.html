@@ -1,0 +1,42 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-3 mt-3">
+      <form [formGroup]="form">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Zip Code</span>
+          </div>
+          <input class="form-control" formControlName="zipCode" type="text">
+          <div class="input-group-append">
+            <button class="btn btn-primary btn-sm" (click)="search(form.value.zipCode)" [disabled]="!form.valid">Search</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div *ngIf="data">
+        <div class="card bg-light mt-3" style="width: 25rem;">
+          <div class="card-body">
+            <h5 class="card-title">{{data.city}}</h5>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Lat/Lon: {{data.latitude}},{{data.longitude}}</li>
+            <li class="list-group-item">Elevation: {{data.elevation|number}} Feet</li>
+            <li class="list-group-item">Temperature: {{data.temperature}} &#8457;</li>
+            <li class="list-group-item">Time Zone: {{data.timeZone}}</li>
+          </ul>
+          <div class="card-body">
+            <a href="https://www.google.com/maps/place/{{data.latitude}},{{data.longitude}}" target="_blank" class="card-link">Google
+              Maps</a>
+            <a href="https://en.wikipedia.org/wiki/{{data.city}}" target="_blank" class="card-link">Wikipedia</a>
+          </div>
+        </div>
+      </div>
+      <div class="alert alert-danger mt-3" *ngIf="errorMessage">
+        {{errorMessage}}
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,71 @@
+@import './node_modules/bootstrap/scss/bootstrap';
+
+html,
+body,
+.viewport {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+
+.viewport {
+  display: flex;
+  flex-direction: column;
+
+  .header {
+    background-color: #eee;
+    flex: 0 50px;
+  }
+
+  .body {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+
+    .nav {
+      border-right: 1px solid #ccc;
+      flex: 0 225px;
+
+      ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+
+        li {
+          a {
+            background-color: #eee;
+            border-bottom: 1px solid #ccc;
+            color: #444;
+            display: block;
+            padding: .5rem .75rem;
+            text-decoration: none;
+
+            &:hover {
+              background-color: darken(#eee, 10);
+            }
+
+            &.active {
+              background-color: darken(#eee, 15);
+            }
+          }
+        }
+      }
+    }
+
+    .content-container {
+      flex: 1;
+      overflow-y: auto;
+
+      .content {
+        padding: 5px;
+      }
+    }
+  }
+
+  .footer {
+    background-color: #eee;
+    flex: 0 50px;
+  }
+}
