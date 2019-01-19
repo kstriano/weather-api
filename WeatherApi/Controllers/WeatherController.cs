@@ -32,17 +32,19 @@ namespace WeatherApi.Controllers
             zipCode.MustNotBeNullOrWhiteSpace();
 
             var weatherResponse = await _weatherService.GetCityDataAsync(zipCode);
-            var elevation = await _elevationService.GetElevationAsync(weatherResponse.Latitude, weatherResponse.Longitude);
-            var timeZone = await _timeZoneService.GetTimeZoneAsync(weatherResponse.Latitude, weatherResponse.Longitude);
+            var elevation = _elevationService.GetElevationAsync(weatherResponse.Latitude, weatherResponse.Longitude);
+            var timeZone = _timeZoneService.GetTimeZoneAsync(weatherResponse.Latitude, weatherResponse.Longitude);
+
+            await Task.WhenAll(elevation, timeZone);
 
             return Ok(new
             {
                 City = weatherResponse.CityName,
-                Elevation = elevation,
+                Elevation = elevation.Result,
                 Latitude = weatherResponse.Latitude,
                 Longitude = weatherResponse.Longitude,
                 Temperature = weatherResponse.Temperature,
-                TimeZone = timeZone
+                TimeZone = timeZone.Result
             });
         }
     }
